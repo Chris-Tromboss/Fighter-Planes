@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject enemyOnePrefab;
+    public GameObject coinPrefab;
     public GameObject cloudPrefab;
     public int score;
     public int lives;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
         CreateSky();
         InvokeRepeating("SpawnEnemyOne", 1f, 2f);
+        InvokeRepeating("SpawnCoin", 1f, 2f);
         cloudsMove = 1;
         score = 0;
         lives = 3;
@@ -38,6 +40,11 @@ public class GameManager : MonoBehaviour
     void SpawnEnemyOne()
     {
         Instantiate(enemyOnePrefab, new Vector3(Random.Range(-8, 8), 7.5f, 0), Quaternion.Euler(0, 0, 180));
+    }
+
+    void SpawnCoin()
+    {
+        Instantiate(coinPrefab, new Vector3(Random.Range(-8, 8), 7.5f, 0), Quaternion.identity);
     }
 
     void CreateSky()
