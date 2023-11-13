@@ -102,7 +102,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5957525327643665589, guid: a1682dfbf0f705244926a8d58ab3ebc0, type: 3}
   explosionPrefab: {fileID: 3822501478942799844, guid: 6f0a0456017f880488c728abbc5d9ef5, type: 3}
   playerSpeed: 0
-  lives: 0
+  lives: 3
 --- !u!50 &5271218934597634852
 Rigidbody2D:
   serializedVersion: 4
