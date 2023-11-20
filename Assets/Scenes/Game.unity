@@ -644,6 +644,9 @@ MonoBehaviour:
   cloudsMove: 0
   scoreText: {fileID: 191034276}
   livesText: {fileID: 2097065667}
+  thingsThatSpawn:
+  - {fileID: 42094560531328497, guid: 7b59bdcb03e45d34c9f75bf6d2e06a5d, type: 3}
+  - {fileID: 6148109821713481138, guid: f104a55f82043994792b06f8efaf18ae, type: 3}
 --- !u!4 &1689831064
 Transform:
   m_ObjectHideFlags: 0

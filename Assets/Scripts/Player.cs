@@ -10,12 +10,17 @@ public class Player : MonoBehaviour
     private float horizontalScreenLimit = 10f;
     private float verticalScreenLimit = 4f;
     public int lives;
+    public GameObject gM;
+    public GameObject shield;
+    public bool shieldOn;
 
     // Start is called before the first frame update
     void Start()
     {
         playerSpeed = 6f;
         lives = 3;
+        gM = GameObject.Find("GameManager");
+        shieldOn = false;
     }
 
     // Update is called once per frame
@@ -51,17 +56,39 @@ public class Player : MonoBehaviour
 
     public void LoseLife()
     {
-        GameObject.Find("GameManager").GetComponent<GameManager>().LoseLifeUI();
+        if(shieldOn){
+            shield.SetActive(false);
+            shieldOn = false;
+        }
+        else{
+            gM.GetComponent<GameManager>().LoseLifeUI();
 
-        lives--;
-        //lives -= 1;
-        //lives = lives - 1;
-        if (lives <= 0) 
-        {
-            //Game Over
-            GameObject.Find("GameManager").GetComponent<GameManager>().GameOver();
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            lives--;
+            //lives -= 1;
+            //lives = lives - 1;
+            if (lives <= 0) 
+            {
+             //Game Over
+                gM.GetComponent<GameManager>().GameOver();
+                    Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision){
+        switch(collision.name){
+            
+            case "Coin(Clone)":
+            gM.GetComponent<GameManager>().EarnScore(1);
+            Destroy(collision.gameObject);
+            break;
+            
+            case "PowerUp(Clone)":
+            shield.SetActive(true);
+            shieldOn = true;
+            Destroy(collision.gameObject);
+            break;
         }
     }
 }

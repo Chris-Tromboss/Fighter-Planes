@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int cloudsMove;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
+    public GameObject[] thingsThatSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,8 @@ public class GameManager : MonoBehaviour
         Instantiate(playerPrefab, transform.position, Quaternion.identity);
         CreateSky();
         InvokeRepeating("SpawnEnemyOne", 1f, 2f);
-        InvokeRepeating("SpawnCoin", 1f, 2f);
+        InvokeRepeating("SpawnSomething", 2f, 3f);
+        //InvokeRepeating("SpawnCoin", 1f, 2f);
         cloudsMove = 1;
         score = 0;
         lives = 3;
@@ -53,6 +55,13 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(cloudPrefab, new Vector3(Random.Range(-11f, 11f), Random.Range(-7.5f, 7.5f), 0), Quaternion.identity);
         }
+    }
+
+    void SpawnSomething()
+    {
+        int tempInt;
+        tempInt = Random.Range(0, 2);
+        Instantiate(thingsThatSpawn[tempInt], new Vector3(Random.Range(-7f, 7f), Random.Range(0, -5f), 0), Quaternion.identity);
     }
 
     public void GameOver()
